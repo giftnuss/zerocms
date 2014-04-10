@@ -71,7 +71,7 @@ class ZeroCms {
 				if ( ! preg_match( '/\.php$/', $file ) ) continue;
 				include_once( ZC_DIR. DS. 'plugins'. DS. $file );
 				if ( preg_match( '/^class(ZeroCmsPlugin(.+))\.php$/', $file, $match ) ) {
-					$this->plugins[ strtolower( $match[2] ) ] = new $match[1]( &$this );
+					$this->plugins[ strtolower( $match[2] ) ] = new $match[1]( $this );
 					$this->has_plugins = true;
 				}
 			}

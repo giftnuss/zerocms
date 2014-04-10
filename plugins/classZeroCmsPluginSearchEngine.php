@@ -1,15 +1,16 @@
 <?php
 
 
-class ZeroCmsPluginSearchEngine extends ZeroCmsPlugin {
-	
+class ZeroCmsPluginSearchEngine extends ZeroCmsPlugin 
+{	
 	private $search_form_template = null;
 	private $search_result_template = null;
 	private $search_result = null;
 	private $search_string = null;
 	
-	public function __construct( &$zcms ) {
-		parent::__construct( &$zcms );
+	public function __construct( &$zcms )
+	{
+		parent::__construct( $zcms );
 		$search_form_template = ZC_DIR. DS. $zcms->getThemeDir(). DS. 'search-form.php';
 		if ( file_exists( $search_form_template ) )
 			$this->search_form_template = $search_form_template;
@@ -18,8 +19,8 @@ class ZeroCmsPluginSearchEngine extends ZeroCmsPlugin {
 			$this->search_result_template = $search_result_template;
 	}
 	
-	public function hookPreContentRender( $path ) {
-		
+	public function hookPreContentRender( $path ) 
+	{	
 		// print search form
 		if ( $path == 'search' ) {
 			
@@ -263,7 +264,7 @@ class ZeroCmsPluginSearchEngine extends ZeroCmsPlugin {
 			if ( preg_match( '/^\.+$/', $path ) ) continue;
 			$abs_path = $dir. DS. $path;
 			if ( is_dir( $abs_path ) ) {
-				$this->_buildSearchIndex( $abs_path, &$search_index );
+				$this->_buildSearchIndex( $abs_path, $search_index );
 			}
 			elseif ( preg_match( '/^(.+)\.tx$/', $path, $match ) ) {
 				$abs_link = $dir. '/'. $match[1];
